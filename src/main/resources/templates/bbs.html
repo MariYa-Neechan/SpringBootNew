@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Day23_BBS</title>
+</head>
+<body>
+ 	<form method = "POST" action = "/bbs" th:object="${formModel}">
+		<h1>掲示板。</h1>
+		<label>名前</label><input type ="text" name ="name">
+		<label>コメント</label><textarea name ="comment" rows = "3" cols="20"></textarea>
+		<input type="submit" value="投稿">
+	</form>
+	<table>
+		<tr><th>No.</th><th>名前</th><th>コメント</th><th>投稿日時</th></tr>
+		<tr th:each="c:${bbsId}">
+		<td th:text = "${c.id}"></td>
+		<td th:text = "${c.name}"></td>
+		<td th:text = "${c.comment}"></td>
+		<td th:text = "${c.time}"></td>
+	</table>	
+</body>
+</html>

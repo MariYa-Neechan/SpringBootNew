@@ -2,21 +2,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>タイトル</title>
+<title>test</title>
 </head>
 	<body>
-		<h1>サイト名</h1>			
-		<div class="profile">
-			<h1>プロフィール</h1>
-			<h2 th:text="${name}">佐藤HTML太郎</h2>	
-			<h2 th:text="${age}">35歳</h2>
-			<h2 th:text="${height}">207cm</h2>
-		</div>
-		<form action="/" method="POST">
-		<label>名前</label><input type="text" name="nameVal" th:value = "${name}">
-		<label><br>年齢</label><input type="text" name="ageVal" th:value = "${age}">
-		<label><br>身長</label><input type="text" name="heightVal" th:value = "${height}">
-		<input type="submit",value="送信">
+		<form method="POST" action="/bbs" th:object = "${formModel}">
+			<h1>新規ユーザー登録</h1>
+			<label>名前</label><input type="text" name="name">
+			<label>年齢</label><input type="text" name="age">			
+			<label>メール</label><input type="text" name="mail">
+			<label>パスワード</label><input type="pass" name="pass">
+			<input type ="submit" value="登録">
 		</form>
+		<h1>顧客リスト</h1>
+		<table>
+		<tr><th>登録者番号</th><th>名前</th><th>年齢</th><th>メールアドレス</th><th>パスワード</th></tr>
+		<tr th:each="c : ${customers}">
+			<td th:text="${c.id}"></td>
+			<td th:text="${c.name}"></td>
+			<td th:text="${c.age}+'才'"></td>
+			<td th:text="${c.mail}"></td>
+		<td>見せられないよ</td>
+		</tr>
+		</table>
+
 	</body>
 </html>
