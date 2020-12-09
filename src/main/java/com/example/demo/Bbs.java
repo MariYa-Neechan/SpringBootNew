@@ -17,8 +17,8 @@ public class Bbs {
 	//コメント
 	@Column(length = 130, nullable = false)
 	private String comment;
-	//投稿日時
-	private Timestamp time;
+	//投稿日時（Timestampで現在日時を取得する）
+	private Timestamp time= new Timestamp(System.currentTimeMillis());;
 	
 	
 	public long getId() {return id;}
