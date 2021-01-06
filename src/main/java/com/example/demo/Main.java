@@ -16,12 +16,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-@Controller						
+@Controller
 public class Main {
 	@Autowired
 	UserDataRepository repository;
-	//Test
-	@RequestMapping(value ="/test",method = RequestMethod.GET)	
+
+	// Test
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ModelAndView indexGet(ModelAndView mv) {
 		List<UserData> customers = repository.findAll();
 		mv.addObject("customers", customers);
@@ -31,25 +32,27 @@ public class Main {
 
 		return mv;
 	}
-	@RequestMapping(value ="/test",method = RequestMethod.POST)	
-	public ModelAndView indexPost(@ModelAttribute("formModel") UserData userData,ModelAndView mv) {
+
+	@RequestMapping(value = "/test", method = RequestMethod.POST)
+	public ModelAndView indexPost(@ModelAttribute("formModel") UserData userData, ModelAndView mv) {
 		repository.saveAndFlush(userData);
 		return new ModelAndView("redirect:/test");
 	}
-	
-	
-	//Day23_HW_JavaBBS
+
+	// Day23_HW_JavaBBS
 	@Autowired
 	BbsRepository bbsRepository;
-	@RequestMapping(value = "/bbs",method = RequestMethod.GET)
+
+	@RequestMapping(value = "/bbs", method = RequestMethod.GET)
 	public ModelAndView bbsGet(ModelAndView mv) {
 		List<Bbs> bbsUser = bbsRepository.findAll();
-		mv.addObject("bbsId",bbsUser);
+		mv.addObject("bbsId", bbsUser);
 		mv.setViewName("bbs");
 		return mv;
 	}
-	@RequestMapping(value = "/bbs",method = RequestMethod.POST)
-	public ModelAndView bbsPost(@ModelAttribute("formModel")Bbs bbsUser ,ModelAndView mv) {
+
+	@RequestMapping(value = "/bbs", method = RequestMethod.POST)
+	public ModelAndView bbsPost(@ModelAttribute("formModel") Bbs bbsUser, ModelAndView mv) {
 		bbsRepository.saveAndFlush(bbsUser);
 		return new ModelAndView("redirect:/bbs");
 	}
